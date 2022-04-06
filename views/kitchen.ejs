@@ -1,0 +1,107 @@
+  <%- include("partials/header"); -%>
+
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <form class="modal-content" id="img01" method="post">
+    <div class="mb-3">
+      <label for="floatingInput">Name</label>
+      <input type="text" class="form-control" id="floatingInput" name="kitchenNamei">
+    </div>
+    <div class="mb-3">
+      <label for="floatingInput">Brand</label>
+      <input type="text" class="form-control" id="floatingInput" name="kitchenBrandi">
+    </div>
+    <div class="mb-3">
+      <label for="floatingInput">Current Amount</label>
+      <input type="text" class="form-control" id="floatingInput" name="kitchenCurrentAmounti">
+    </div>
+    <div class="mb-3">
+      <label for="floatingInput">Total Amount</label>
+      <input type="text" class="form-control" id="floatingInput" name="kitchenTotalAmounti">
+    </div>
+    <div class="mb-3">
+      <label for="floatingInput">Storage</label>
+      <input type="text" class="form-control" id="floatingInput" name="kitchenStoragei">
+    </div>
+    <div class="mb-3">
+      <label for="floatingInput">Note</label>
+      <input type="text" class="form-control" id="floatingInput" name="kitchenNotei">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+
+  <div class="table">
+    <h1>Kitchen</h1>
+    <table>
+      <thead>
+        <tr>
+          <th><a href="#">Name</a></th>
+          <th><a href="#">Brand</a></th>
+          <th><a href="#">Current Amount</a></th>
+          <th><a href="#">Total Amount</a></th>
+          <th><a href="#">Storage</a></th>
+          <th><a href="#">Note</a></th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0; i<Kitchen.length; i++){ %>
+        <tr>
+          <td><%= Kitchen[i].name %></td>
+          <td><%= Kitchen[i].brand %></td>
+          <td><%= Kitchen[i].currentAmount %></td>
+          <td><%= Kitchen[i].totalAmount %></td>
+          <td><%= Kitchen[i].location %></td>
+          <td><%= Kitchen[i].note %>
+
+          <td>
+            <form action="/deleteKitchen" method="post">
+              <input value="<%=Kitchen[i]._id%>" name="targetId" type="hidden" />
+              <button type="submit" name="button">Delete</button>
+            </form>
+
+            <button type="button" class="editbutton" name="<%=Kitchen[i]._id%>" onclick="block1(<%= i %>)" value="<%= i %>">Edit</button>
+
+            <div id="myModal1" title="<%=Kitchen[i]._id%>" class="mm">
+              <span class="close1">&times;</span>
+              <form action="/editKitchen" class="modal-content" method="post">
+                <input value="<%=Kitchen[i]._id%>" name="targetId" type="hidden" />
+                <div class="mb-3">
+                  <label for="floatingInput">Name</label>
+                  <input type="text" class="form-control" id="floatingInput" name="kitchenNameie" value="<%= Kitchen[i].name %>">
+                </div>
+                <div class="mb-3">
+                  <label for="floatingInput">Brand</label>
+                  <input type="text" class="form-control" id="floatingInput" name="kitchenBrandie" value="<%= Kitchen[i].brand %>">
+                </div>
+                <div class="mb-3">
+                  <label for="floatingInput">Current Amount</label>
+                  <input type="text" class="form-control" id="floatingInput" name="kitchenCurrentAmountie" value="<%= Kitchen[i].currentAmount %>">
+                </div>
+                <div class="mb-3">
+                  <label for="floatingInput">Total Amount</label>
+                  <input type="text" class="form-control" id="floatingInput" name="kitchenTotalAmountie" value="<%= Kitchen[i].totalAmount %>">
+                </div>
+                <div class="mb-3">
+                  <label for="floatingInput">Storage</label>
+                  <input type="text" class="form-control" id="floatingInput" name="kitchenStorageie" value="<%= Kitchen[i].location %>">
+                </div>
+                <div class="mb-3">
+                  <label for="floatingInput">Note</label>
+                  <input type="text" class="form-control" id="floatingInput" name="kitchenNoteie" value="<%= Kitchen[i].note %>">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </td>
+  </div>
+  </td>
+  </tr>
+  <% } %>
+      </tbody>
+    </table>
+  </div>
+  <%- include("partials/footer"); -%>
